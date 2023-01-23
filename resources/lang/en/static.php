@@ -56,8 +56,12 @@ return [
     'contacts_us' => 'Contacts Us',
     'appearance' => 'Appearance',
     'comment' => 'Comment',
-
+    'below map is displaying the world map'=>'Below Map is displaying the world map.',
+    'average_duration'=>'Average Duration',
     'social_link' => 'Social Links',
+    'bounce_rate'=>'Bounce Rate',
+    'new_visitors'=>'New Visitors',
+    'visitors'=>'Visitors',
     'social_links' => [
         'create' => 'Create Social Link',
         'add' => 'Add Social Link`',

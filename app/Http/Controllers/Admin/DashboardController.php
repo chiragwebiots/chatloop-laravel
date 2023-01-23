@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Models\Blog;
 use App\Models\Page;
+use App\Models\User;
 use Spatie\Analytics\Period;
+use Spatie\Analytics\Analytics;
 use App\Http\Controllers\Controller;
 use Spatie\Activitylog\Models\Activity;
 
@@ -17,14 +18,15 @@ class DashboardController extends Controller
     protected $post;
     protected $page;
     protected $user;
-   
-    
-
     public function __construct()
     {
         $this->post = new Blog;
         $this->page = new Page;
         $this->user = new User;
+    }
+
+    public function anaylitics(){
+        return \Analytics::performQuery(Period::days(30),;
     }
 
     public function index()
@@ -44,16 +46,16 @@ class DashboardController extends Controller
             'max-results' => 5
         ]);
 
-        $keys = array('country', 'users');
+        $arraykeys = array('country', 'users');
 
-        $array1 = [];
-        $array2 = [];
+        $arrayOne = [];
+        $arrayTwo = [];
 
         foreach ($userscountrywise['rows'] as $value) {
 
-            $array1 = array_combine($keys, $value);
+            $arrayOne = array_combine($arraykeys, $value);
 
-            array_push($array2, $array1);
+            array_push($arrayTwo, $arrayOne);
         }
 
         $usersdevices = \Analytics::performQuery(Period::days(30), 'ga:', [
@@ -63,29 +65,32 @@ class DashboardController extends Controller
         ]);
 
         $arraykey = array('devicename', 'users');
-        
-        $b = [];
+
+        $arraypush = [];
         $array_combine = [];
 
         foreach ($usersdevices['rows'] as $usersdevice) {
 
-            $b = array_combine($arraykey, $usersdevice);
+            $arraypush = array_combine($arraykey, $usersdevice);
 
-            array_push($array_combine, $b);
+            array_push($array_combine, $arraypush);
         }
-        
-        $mobileuser = 0;
-        $desktopuser = 0;
-        $tabletuser = 0;
 
-        if ($array_combine[0]['devicename'] == 'mobile') {
-            $mobileuser = (intval($array_combine[0]['users']));
-        }
-        if ($array_combine[0]['devicename'] == 'desktop') {
-            $desktopuser = (intval($array_combine[0]['users']));
-        }
-        if ($array_combine[0]['devicename'] == 'tablet') {
-            $tabletuser = (intval($array_combine[0]['users']));
+        $mobileUsers = 0;
+        $desktopUsers = 0;
+        $tabletUsers = 0;
+
+        foreach ($array_combine as $device) {
+
+            if ($device['devicename'] == 'desktop') {
+                $desktopUsers = intval($device['users']);
+            }
+            if ($device['devicename'] == 'tablet') {
+                $tabletUsers = (intval($device['users']));
+            }
+            if ($device['devicename'] == 'mobile') {
+                $mobileUsers = (intval($device['users']));
+            }
         }
 
         return view('admin.dashboard.index', [
@@ -95,15 +100,11 @@ class DashboardController extends Controller
             'recentBlogs' => $this->post->getRecentBlogs(),
             'recentActivitys' => $recentActivitys,
             'analyticsData' => $analyticsData,
-            'usercountrywise' => $userscountrywise,
-            'array2' => $array2,
-            'array_combine' => $array_combine,
-            'mobileuser' => $mobileuser,
-            'desktopuser' => $desktopuser,
-            'tabletuser' => $tabletuser,
+            'arrayTwo' => $arrayTwo,
+            'mobileUsers' => $mobileUsers,
+            'desktopUsers' => $desktopUsers,
+            'tabletUsers' => $tabletUsers,
         ]);
     }
 }
-
-
 

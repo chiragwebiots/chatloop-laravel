@@ -80,7 +80,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5>{{ __('static.visitors') }}</h5>
-                    <span>Below Map is displaying the world map.</span>
+                    <span>{{ __('static.below map is displaying the world map') }}</span>
                 </div>
                 <div class="card-body">
                     <div class="row align-items-start g-sm-4 g-2">
@@ -96,12 +96,11 @@
                                         </div>
                                         <div class="visitors-content">
                                             <div class="left">
-                                                <h5>average duration</h5>
+                                                <h5>{{ __('static.average_duration') }}</h5>
                                             </div>
 
                                             <div class="right">
-                                                <h6>{{ gmdate('H:i:s', $analyticsData['totalsForAllResults']['ga:avgSessionDuration']) }}
-                                                </h6>
+                                                <h6>{{ gmdate('H:i:s', $analyticsData['totalsForAllResults']['ga:avgSessionDuration']) }}</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +113,7 @@
                                         </div>
                                         <div class="visitors-content">
                                             <div class="left">
-                                                <h5>Bounce Rate</h5>
+                                                <h5>{{ __('static.bounce_rate') }}</h5>
                                             </div>
 
                                             <div class="right">
@@ -132,7 +131,7 @@
                                         </div>
                                         <div class="visitors-content">
                                             <div class="left">
-                                                <h5>New visitors</h5>
+                                                <h5>{{ __('static.new_visitors') }}</h5>
                                             </div>
 
                                             <div class="right">
@@ -149,7 +148,7 @@
                                         </div>
                                         <div class="visitors-content">
                                             <div class="left">
-                                                <h5>Visitors</h5>
+                                                <h5>{{ __('static.visitors') }}</h5>
                                             </div>
 
                                             <div class="right">
@@ -223,29 +222,28 @@
                 </div>
                 <div class="card-body">
                     <ul class="progress-box-list">
-                        @forelse ($array2 as $a)
+                        @forelse ($arrayTwo as $countryWiseUser)
                             <li>
                                 <div class="progress-box">
                                     <div class="progress-name">
-                                        <h5>{{ $a['country'] }}</h5>
-                                        <h5>{{ Round((intval($a['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%
+                                        <h5>{{ $countryWiseUser['country'] }}</h5>
+                                        <h5>{{ Round((intval($countryWiseUser['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%
                                         </h5>
                                     </div>
                                     <div class="progress city-progress m-t-5">
-                                        @if ($a['country'] == 'India')
+                                        @if ($countryWiseUser['country'] == 'India')
                                             <div class="progress-bar bg-pink" role="progressbar"
-                                                style="width:{{ Round((intval($a['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%">
+                                                style="width:{{ Round((intval($countryWiseUser['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%">
                                             </div>
-                                        @elseif ($a['country'] == 'United Kingdom')
+                                        @elseif ($countryWiseUser['country'] == 'United Kingdom')
                                             <div class="progress-bar bg-orange" role="progressbar"
-                                                style="width: {{ Round((intval($a['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%">
+                                                style="width: {{ Round((intval($countryWiseUser['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%">
                                             </div>
-                                        @elseif ($a['country'] == 'Lithuania')
+                                        @elseif ($countryWiseUser['country'] == 'Lithuania')
                                             <div class="progress-bar bg-grey" role="progressbar"
-                                                style="width: {{ Round((intval($a['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%">
+                                                style="width: {{ Round((intval($countryWiseUser['users']) / intval($analyticsData['totalsForAllResults']['ga:users'])) * 100, 2) }}%">
                                             </div>
                                         @endif
-                                        {{-- <div class="progress-bar bg-grey" role="progressbar" style="width: 50%"></div> --}}
                                     </div>
                                 </div>
                             </li>
@@ -347,16 +345,13 @@
             </div>
         </div>
     </div>
-    {{-- @dd($mobileuser) --}}
     <script>
         var options = {
-            series: [{{ $desktopuser }}, {{ $mobileuser }}, {{ $tabletuser }}],
+            series: [{{ $desktopUsers }}, {{ $mobileUsers }}, {{ $tabletUsers }}],
             labels: ['Desktop', 'Mobile', 'Tablet'],
             chart: {
                 type: 'donut',
                 height: 240,
-                // width: '75%',
-                // offsetX: 50
             },
             plotOptions: {
                 pie: {
