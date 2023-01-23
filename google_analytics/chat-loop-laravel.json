@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "chat-loop-laravel",
+  "private_key_id": "8c9f5dd9c62d566d75c0312008ec0c92e6b24629",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC67YTjaE06q5lo\nl8p1d88cll3TLoiu05+yykFgKtfHk1I8w5e6qnHl6aYjTOwM+tmsJRTp9xQE8nCp\nzw9JI2uVFg8MT/7RGfP/lnFFCHrKKFoAE7xzdZhYnlo8wpVh6ApL7pLSSt7Y6Zsj\nOm+CE9/8zXBYGk/rG+hF5Sju5gER9zWWbk5NQA4fdoVmSqleEndd1QLhdVpdR+Dc\nm2qNJkailyWe+jP3Ucxxmgv79taUjMgG01CpGeCBL23nQ2zhx2CA+TOT/mWimem8\nUHy/jsrBpJOH8CEDE242VqMZDoxFkcj6HxmR8cS3JFuBL/9Vy6xdEhWAV3dgrFtG\nD1oCBIerAgMBAAECggEAChh04mFKNn55ERSNmy2G0ojudU7gk+ybBel1gW+e6sjy\nmpSHt82nzB6D2gk4AHV11x3DlOVCwAel/Q3RSgZvM4SW+HfDj+CCdI3X/T35f7yR\nK8rlFSlHOpYG0pxBvCFvmO1AIbpocbegKNVpm1FeegVQaXm2UkDWGRxIyypB6Ynk\nN0kUB+Q+1hBaApR4vZ3wsi9bubhRzOvcV+xCnwYw334dgyl7wWyKizxNa0lzqgxk\nQTtP9keRcBPElzjp1kSy/zVANV6la+Jg2D21BPBwQVhRig20SHiJ4eMAURkBrnZe\nnY4s52ihyYJ5+O4KlNWui8fbsMmena03GDarsn5+UQKBgQDs32SDytIJd6Hrh6K/\nx1CKRdjecYEkPptDrf2DVy1cZO0Ic4S1uhPNdndSUEX5rSPNCkUOYhknXSNiLwV5\n9d47kgI2FhhNCeUqy+h7jjcUZbdTysqI39hGRb1bXKcApxg65pLz1htm0jD7dYUn\nMfvXfn8E+KkSaW9HXBeF4L8hWwKBgQDKBawRrlkir1a/VwI5peWYwHc/qaGTqCfN\nntLzmCIThq3WoZrR0b5ORGCgK0jJ2Ir893OqNDtdRogup3ZAObtFICEEm3Rp7PHh\npbBrwWJUjZLZXquzGk/HmzCAG32VtfoupZcJFhkusOSDa4kH4mjY2aCE9x00qpWo\ng5tUUSMz8QKBgQDrej0TY4qgDMT0P3eEjWE8xKkOoenPHUn+4zX13rFie5bEYwqY\nGi7bf5ypQNH/nqbLjB0Qamc1IbsuPS6Fiu3tbH40RIzN8TtX6zPnuH57EY9Jhn0H\nyvfXDDdtXtNKq9JDo7qNGtlMw0IciTzgtSj2lnMxfv2dJyGP4DYmSkHXpwKBgCxA\n2dR1sKjcZ9A6Kw6dvJGdd4HGktJZf36XT/Z0WOKWGfZuKA/WNi3G5LOxR5yPhsKr\nIfciwe5IyQQPQuQGwXL++ryboQCjGsknFmJEVlnXOVfMWSg+l0NOR22ImBX3avpU\n46Tl5lZIAYaYQ8gqXHVEFtmJmCg1RdtIGPp7W47BAoGAFxYJYKLVTqbRvxHUkPV1\nZXnzoAitgEVa6z6rBFGdb8dOQH+OfiCNQSZlBiy/lzP1WuC4lIk4YjoiJFk9bmVw\neWuicAaECx0m5RWgphe9/2sWU8JGzpGq7r+o3gC6EM5iQ7w/E/Ipldm0Cy+XlQUE\n/7N8jrdhHPlk469/k86qxZo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "chat-loop@chat-loop-laravel.iam.gserviceaccount.com",
+  "client_id": "115921708665439304846",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chat-loop%40chat-loop-laravel.iam.gserviceaccount.com"
+}
