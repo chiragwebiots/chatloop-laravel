@@ -81,6 +81,15 @@
                 <div class="card-header">
                     <h5>{{ __('static.visitors') }}</h5>
                     <span>{{ __('static.below map is displaying the world map') }}</span>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Small button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item">today</a>
+                        </ul>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row align-items-start g-sm-4 g-2">
@@ -100,7 +109,8 @@
                                             </div>
 
                                             <div class="right">
-                                                <h6>{{ gmdate('H:i:s', $analyticsData['totalsForAllResults']['ga:avgSessionDuration']) }}</h6>
+                                                <h6>{{ gmdate('H:i:s', $analyticsData['totalsForAllResults']['ga:avgSessionDuration']) }}
+                                                </h6>
                                             </div>
                                         </div>
                                     </div>
@@ -279,7 +289,9 @@
                             @foreach ($recentBlogs as $recentBlog)
                                 <li class="media">
                                     <div class="media-image">
-                                        <img class="img-fluid" src="{{url(\App\Helpers\Helpers::media($recentBlog->image)->url)}}" alt="not found">
+                                        <img class="img-fluid"
+                                            src="{{ url(\App\Helpers\Helpers::media($recentBlog->image)->url) }}"
+                                            alt="not found">
                                     </div>
                                     <div class="media-body">
                                         <a href="#">
@@ -345,52 +357,6 @@
             </div>
         </div>
     </div>
-    <script>
-        var options = {
-            series: [{{ $desktopUsers }}, {{ $mobileUsers }}, {{ $tabletUsers }}],
-            labels: ['Desktop', 'Mobile', 'Tablet'],
-            chart: {
-                type: 'donut',
-                height: 240,
-            },
-            plotOptions: {
-                pie: {
-                    expandOnClick: false,
-                    size: 250,
-                    donut: {
-                        labels: {
-                            show: true,
-                        }
-                    },
-                }
-            },
-            responsive: [{
-                breakpoint: 1643,
-                options: {
-                    chart: {
-                        height: 300,
-                    }
-                },
-                breakpoint: 1598,
-                options: {
-                    chart: {
-                        height: 900,
-                    }
-                },
-                breakpoint: 1556,
-                options: {
-                    chart: {
-                        height: 900,
-                    }
-                },
-            }]
-        };
-
-
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-    </script>
 @endsection
 @push('js')
     {{-- chart script --}}

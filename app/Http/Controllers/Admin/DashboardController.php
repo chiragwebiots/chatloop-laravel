@@ -24,11 +24,7 @@ class DashboardController extends Controller
         $this->page = new Page;
         $this->user = new User;
     }
-
-    public function anaylitics(){
-        return \Analytics::performQuery(Period::days(30),;
-    }
-
+    
     public function index()
     {
 
