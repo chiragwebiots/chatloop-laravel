@@ -1,2 +1,0 @@
-$(function(){window.<?php echo e(config('datatables-html.namespace', 'LaravelDataTables')); ?>=window.<?php echo e(config('datatables-html.namespace', 'LaravelDataTables')); ?>||{};window.<?php echo e(config('datatables-html.namespace', 'LaravelDataTables')); ?>["%1$s"]=$("#%1$s").DataTable(%2$s);});
-<?php /**PATH /home/webiots/Desktop/Git_hub/chat_loop_OPTIMIZE_CODE/chat_loop/vendor/yajra/laravel-datatables-html/src/resources/views/script.blade.php ENDPATH**/ ?>

@@ -32,6 +32,52 @@
             });
         }
 
+        // pie chart script
+        var options = {
+            series: [{{ $desktopUsers }}, {{ $mobileUsers }}, {{ $tabletUsers }}],
+            labels: ['Desktop', 'Mobile', 'Tablet'],
+            chart: {
+                type: 'donut',
+                height: 240,
+            },
+            plotOptions: {
+                pie: {
+                    expandOnClick: false,
+                    size: 250,
+                    donut: {
+                        labels: {
+                            show: true,
+                        }
+                    },
+                }
+            },
+            responsive: [{
+                breakpoint: 1643,
+                options: {
+                    chart: {
+                        height: 300,
+                    }
+                },
+                breakpoint: 1598,
+                options: {
+                    chart: {
+                        height: 900,
+                    }
+                },
+                breakpoint: 1556,
+                options: {
+                    chart: {
+                        height: 900,
+                    }
+                },
+            }]
+        };
+
+
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
 
         // Add Shortcode Plugin
         tinymce.PluginManager.add('shortcodes', function(editor, url) {
