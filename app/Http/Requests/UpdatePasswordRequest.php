@@ -26,7 +26,7 @@ class UpdatePasswordRequest extends FormRequest
     {
         $rule = [
             'current_password' => ['required', new MatchOldPassword],
-            'new_password' => 'required',
+            'new_password' => 'required|min:8',
             'confirm_password' => 'same:new_password',
         ];
 

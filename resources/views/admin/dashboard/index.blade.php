@@ -24,7 +24,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-xl-3 col-md-6 xl-50">
             <div class="card o-hidden  widget-cards">
                 <div class="bg-secondary card-body">
@@ -81,15 +80,6 @@
                 <div class="card-header">
                     <h5>{{ __('static.visitors') }}</h5>
                     <span>{{ __('static.below map is displaying the world map') }}</span>
-                    <div class="btn-group">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Small button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <a class="dropdown-item">today</a>
-                        </ul>
-                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row align-items-start g-sm-4 g-2">
@@ -232,7 +222,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="progress-box-list">
-                        @forelse ($arrayTwo as $countryWiseUser)
+                        @forelse ($country_array as $countryWiseUser)
                             <li>
                                 <div class="progress-box">
                                     <div class="progress-name">
@@ -325,30 +315,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($comments as $comment)
                                     <tr>
-                                        <td class="text-center">01.</td>
-                                        <td class="avatar-name">25 Surprising Facts About Chair</td>
+                                        <td class="text-center">{{ $comment->id }}</td>
+                                        <td class="avatar-name">{{ $comment->message }}</td>
                                     </tr>
-
-                                    <tr>
-                                        <td class="text-center">01.</td>
-                                        <td class="avatar-name">25 Surprising Facts About Chair</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-center">01.</td>
-                                        <td class="avatar-name">25 Surprising Facts About Chair</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-center">01.</td>
-                                        <td class="avatar-name">25 Surprising Facts About Chair</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-center">01.</td>
-                                        <td class="avatar-name">25 Surprising Facts About Chair</td>
-                                    </tr>
+                                    @empty
+                                    <td class="text-center"><span>No Comments Found</span></td>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -358,7 +332,9 @@
         </div>
     </div>
 @endsection
+
 @push('js')
+
     {{-- chart script --}}
     <script src="{{ asset('admin/js/admin-chart.js') }}"></script>
 
@@ -366,4 +342,49 @@
     <script src="{{ asset('admin/js/vectormap.min.js') }}"></script>
     <script src="{{ asset('admin/js/vectormap.js') }}"></script>
     <script src="{{ asset('admin/js/vectormapcustom.js') }}"></script>
+<script>
+    // pie chart script
+    var options = {
+        series: [{{ $deviceWiseUsers['desktopUsers'] }}, {{ $deviceWiseUsers['mobileUsers'] }}, {{ $deviceWiseUsers['tabletUsers'] }}],
+        labels: ['Desktop', 'Mobile', 'Tablet'],
+        chart: {
+            type: 'donut',
+            height: 240,
+        },
+        plotOptions: {
+            pie: {
+                expandOnClick: false,
+                size: 250,
+                donut: {
+                    labels: {
+                        show: true,
+                    }
+                },
+            }
+        },
+        responsive: [{
+            breakpoint: 1643,
+            options: {
+                chart: {
+                    height: 300,
+                }
+            },
+            breakpoint: 1598,
+            options: {
+                chart: {
+                    height: 900,
+                }
+            },
+            breakpoint: 1556,
+            options: {
+                chart: {
+                    height: 900,
+                }
+            },
+        }]
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
 @endpush

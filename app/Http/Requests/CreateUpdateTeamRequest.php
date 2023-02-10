@@ -24,7 +24,7 @@ class CreateUpdateTeamRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'designation' => 'required|string|max:50',
             'description' => 'required|string'
         ];

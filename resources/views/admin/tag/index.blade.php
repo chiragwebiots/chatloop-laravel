@@ -15,6 +15,12 @@
                     <a href="{{ route('admin.tag.create') }}" class="btn btn-primary">{{ __('Create Tag') }}</a>
                 </div>
             @endcan
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger deleteConfirmationBtn"
+                style="display: none; margin-left: 8px;" data-url="{{ route('admin.delete.roles') }}">
+                <i class="fa fa-trash">
+                    <span id="count-selected-rows">0</span>
+                </i> Delete Selected
+            </a>
         </div>
         <div class="card-body">
             {!! $dataTable->table() !!}

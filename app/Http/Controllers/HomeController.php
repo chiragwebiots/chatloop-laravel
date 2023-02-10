@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->Setting =new Setting;
+        $this->Setting = new Setting();
     }
 
     /**
@@ -31,7 +31,7 @@ class HomeController extends Controller
             return view('frontend.blog-list', ['blogs' => $blogs]);
         }
             
-        $setting = Setting::where('id', $this->Setting->id)->firstOrFail();
+        $setting = Setting::where('id', $this->Setting->first()->id)->firstOrFail();
         $page_id = ($setting->display_homepage == 'page') ? $setting->homepage : $setting->postpage;
 
         $page = Page::where('id', $page_id)->firstOrFail();

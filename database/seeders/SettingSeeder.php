@@ -15,6 +15,7 @@ class SettingSeeder extends Seeder
     public function run()
     {
         Setting::create([
+
             'site_name' => 'Chaloop',
             'site_tagline' => 'Mobile App Landing',
             'site_url' => 'http://localhost:8000/',
@@ -23,9 +24,9 @@ class SettingSeeder extends Seeder
             'display_homepage' => 'post',
             'post_show' => 20,
             'page_base' => 'page',
-            'post_base' => 'blog',
-            'category_base' => null,
-            'tag_base' => null,
+            'post_base' => 'blogs',
+            'category_base' => 'category',
+            'tag_base' => 'tag',
             'mail_transport' => 'smtp',
             'mail_host' => 'smtp.mailgun.org',
             'mail_port' => 587,
@@ -34,8 +35,9 @@ class SettingSeeder extends Seeder
             'mail_password' => null,
             'mail_from_address' => null,
             'mail_from_name' => null,
-            'google_analytics' => null,
+            'google_analytics' => 281678007,
             'facebook_pixel' => null,
+            
         ]);
     }
 }

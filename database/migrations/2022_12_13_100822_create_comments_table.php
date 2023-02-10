@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name', 191);
             $table->string('email', 191);
             $table->string('message')->nullable();
+            $table->boolean('is_approved')->default(0);
             $table->bigInteger('parent_id')->unsigned()->nullable();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('blog_id')->unsigned(); 
             $table->timestamps();
             $table->softDeletes();

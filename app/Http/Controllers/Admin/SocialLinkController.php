@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\SocialLink;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\SocialLinkDataTable;
@@ -138,6 +139,22 @@ class SocialLinkController extends Controller
 
             DB::rollback();
             
+            throw $e;
+        }
+    }
+
+    public function deleteRows(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            
+            $this->social_link->deleteRows($request);
+            DB::commit();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
             throw $e;
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Testimonial;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\TestimonialDataTable;
@@ -141,6 +142,22 @@ class TestimonialController extends Controller
             
             throw $e;
 
+        }
+    }
+
+    public function deleteRows(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            
+            $this->testimonial->deleteRows($request);
+            DB::commit();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
         }
     }
 }

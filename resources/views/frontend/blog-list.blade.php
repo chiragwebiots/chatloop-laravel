@@ -25,13 +25,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="row blog-list">
+                        <div class="row blog-list ratio3_2">
                             @forelse ($blogs as $blog)
                                 <div class="col-lg-6 col-md-12">
                                     <div class="item news-slid"><a href="{{ route('blog.details', $blog->slug) }}">
-                                            <div class="news-box"><img class="img-fluid"
+                                            <div class="news-box">
+                                                <div>
+                                                    <img class="img-fluid bg-img"
                                                     src="{{ url(\App\Helpers\Helpers::media($blog->image)->url) }}"
-                                                    alt="news-1"></div>
+                                                    alt="news-1">
+                                                </div>
+                                            </div>
                                         </a>
                                         <div class="news-text">
                                             <div class="blog-hover">

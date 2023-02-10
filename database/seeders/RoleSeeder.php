@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Module;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -50,6 +48,13 @@ class RoleSeeder extends Seeder
                 'create'  => 'admin.blog.create',
                 'edit'    => 'admin.blog.edit',
                 'destroy' => 'admin.blog.destroy'
+            ]
+        ],
+        'comments' => [
+            'actions' => [
+                'index'   => 'admin.comment.index',
+                'edit'    => 'admin.comment.edit',
+                'destroy' => 'admin.comment.destroy'
             ]
         ],
         'category' => [
@@ -104,7 +109,26 @@ class RoleSeeder extends Seeder
             'actions' => [
                 'index'    => 'admin.section.index'
             ]
+        ],
+        'settings' => [
+            'actions' => [
+                'index' => 'admin.settings.index'
+            ]
+        ],
+        'theme-options' => [
+            'actions'=> [
+                'index' => 'admin.theme-options.index'
+            ]
+        ],
+        'social-links' => [
+            'actions' => [
+                'index' => 'admin.social-links.index',
+                'create' => 'admin.social-links.create',
+                'edit' => 'admin.social-links.edit',
+                'destroy' => 'admin.social-links.destroy'
+            ]
         ]
+
     ];
 
     /**

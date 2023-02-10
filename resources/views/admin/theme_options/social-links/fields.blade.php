@@ -22,9 +22,7 @@
         false,
     ) !!}
     <div class="col-xl-8 col-md-7">
-        {!! Form::text('icon', isset($social_link->icon) ? $social_link->icon : old('icon'), [
-            'class' => 'form-control',
-        ]) !!}
+        {{ Form::select('icon', ['fa fa-facebook-square' => 'Facebook', 'fa fa-instagram' => 'Instagram','fa fa-google-plus' => 'Google-Plus','fa fa-twitter' => 'Twitter','fa fa-rss' => 'RSS'], isset($social_link->icon) ? $social_link->icon : old('icon'), ['class' => 'form-control select-2', 'placeholder' => 'Select Icon']) }}
         @error('icon')
             <span class="invalid-feedback d-block" role="alert">
                 <strong>{{ $message }}</strong>

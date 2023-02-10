@@ -28,7 +28,14 @@ class SocialLinkDataTable extends DataTable
                     'delete' => 'admin.social-links.destroy',
                     'data'   => $row
                 ]);
-            });
+            })
+            ->addColumn('checkbox', function ($row) {
+                return view('admin.inc.action', [
+                    'select' => 'admin.social-links.destroy',
+                    'data' => $row
+                ]);
+            })
+            ->rawColumns(['checkbox', 'action']);
     }
 
     /**
@@ -64,6 +71,7 @@ class SocialLinkDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.social-links.destroy')),
             Column::make('id')
                 ->title('No')
                 ->data('DT_RowIndex')
@@ -73,7 +81,7 @@ class SocialLinkDataTable extends DataTable
             Column::make('icon'),
             Column::make('url'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.social-links.edit') || auth()->user()->can('admin.social-links.destroy'))),
         ];
     }
 

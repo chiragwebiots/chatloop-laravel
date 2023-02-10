@@ -32,9 +32,12 @@ class TeamDataTable extends DataTable
                     'data'   => $row
                 ]);
             })->addColumn('checkbox', function ($row) {
-
-                return '<input type="checkbox" name="row" class="rowClass" value=' . $row->id . ' id="rowId' . $row->id . '">';
-            })->rawColumns(['checkbox', 'action']);
+                return view('admin.inc.action', [
+                    'select' => 'admin.team.destroy',
+                    'data' => $row
+                ]);
+            })
+            ->rawColumns(['checkbox', 'action']);
     }
 
     /**
@@ -70,7 +73,7 @@ class TeamDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false),
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.team.destroy')),
             Column::make('id')
                 ->title('No')
                 ->data('DT_RowIndex')
@@ -78,7 +81,7 @@ class TeamDataTable extends DataTable
                 ->orderable(false),
             Column::make('name'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.team.edit') || auth()->user()->can('admin.team.destroy'))),
         ];
     }
 

@@ -8,6 +8,8 @@
                     </div>
                     {!! Form::open([
                         'class' => 'auth-form',
+                        'route' => 'contact.store',
+                        'method'=> 'POST',
                     ]) !!}
                     <div class="form-group">
                         {!! Form::label('name', __('static.name') . ' <span>*</span>', ['class' => 'col-xl-3 col-md-4'], false) !!}<i class="fa fa-user"></i>
@@ -40,7 +42,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-0">
-                        <button class="btn-theme" type="submit">Send Message</button>
+                        {!! Form::submit(__('static.send_message'), ['class' => 'btn-theme']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>

@@ -13,6 +13,7 @@ class ThemeOptionController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(ThemeOption::class);
         $this->theme = ThemeOption::first();
     }
 
@@ -24,7 +25,7 @@ class ThemeOptionController extends Controller
 
             return view("admin.theme_options.{$theme}", ['theme' => $this->theme]);
 
-        }else {
+        } else {
 
             abort(404);
         }

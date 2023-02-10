@@ -14,4 +14,5 @@ interface FaqInterface
 
     public function destroy(int $id); 
 
+    public function deleteRows($request);
 }

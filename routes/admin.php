@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth', 'demo'], 'namespace' => 'Admin', 'as' => 
     // Tag
     Route::resource('tag', 'TagController', ['except' => ['show']]);
 
+    //Comment
+    Route::resource('comment', 'CommentController', ['except' => ['show']]);
+
     // Team
     Route::resource('team', 'TeamController', ['except' => ['show']]);
     Route::delete('delete-teams', 'TeamController@deleteRows')->name('teams.delete');
@@ -55,9 +58,11 @@ Route::group(['middleware' => ['auth', 'demo'], 'namespace' => 'Admin', 'as' => 
 
     // Testimonial
     Route::resource('testimonial', 'TestimonialController', ['except' => ['show']]);
+    Route::delete('delete-testimonial', 'TestimonialController@deleteRows')->name('delete.testimonial');
 
     // Faq
     Route::resource('faq', 'FaqController', ['except' => ['show']]);
+    Route::delete('delete-faq', 'FaqController@deleteRows')->name('delete.faq');
 
     // Section
     Route::get('section/{name?}', 'SectionController@index')->name('section.index');
@@ -71,7 +76,9 @@ Route::group(['middleware' => ['auth', 'demo'], 'namespace' => 'Admin', 'as' => 
     Route::get('themes/{name?}', 'ThemeOptionController@index')->name('theme.index');
     Route::put('themes/update', 'ThemeOptionController@update')->name('theme.update');
 
+    // social linkss
     Route::resource('social-links', 'SocialLinkController', ['except' => ['show']]);
+    Route::delete('delete-links', 'SocialLinkController@deleteRows')->name('delete.social-links');
 
     // Clear Cache
     Route::get('/clear-cache', function () {

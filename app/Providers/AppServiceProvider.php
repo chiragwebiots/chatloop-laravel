@@ -6,6 +6,7 @@ namespace App\Providers;
 use App\Models\Setting;
 use App\Helpers\Helpers;
 use App\Models\ThemeOption;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -44,5 +45,6 @@ class AppServiceProvider extends ServiceProvider
                 View::share('theme', $theme);
             }
         }
+        Paginator::useBootstrap();
     }
 }

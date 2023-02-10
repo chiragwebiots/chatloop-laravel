@@ -56,5 +56,12 @@ class TestimonialRepository implements TestimonialInterface
 	{
 		return $this->_testimonial->destroy($id);
 	}
+
+	public function deleteRows($request)
+	{
+		foreach ($request->id as $id) {
+			$this->_testimonial->findOrFail($id)->destroy($id);
+		}
+	}
     
 }

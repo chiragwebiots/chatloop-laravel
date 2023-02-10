@@ -18,7 +18,7 @@
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#news"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
                     <ul class="dropdown-menu">
-                        <li class="nav-item"><a class="nav-link" href="blog.html">blog list</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('blogs') }}">blog list</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog-details.html">blog details</a></li>
                         <li class="nav-item"><a class="nav-link" href="blogs-leftside.html">leftsidebar</a></li>
                         <li class="nav-item"><a class="nav-link" href="blogs-rightside.html">rightsidebar</a></li>

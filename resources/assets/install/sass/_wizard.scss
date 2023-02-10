@@ -18,11 +18,18 @@
         .wizard-step-container {
             overflow: hidden;
             ul {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
                 li {
                     display: inline-block;
                     .media {
-                        align-items: center;
+                        display: flex;
+                        gap: 10px;
+                        flex-direction: column;
+                        text-align: center;
                         .step-icon {
+                            margin: auto;
                             width: 45px;
                             height: 45px;
                             background: $light-color;
@@ -42,12 +49,16 @@
                             margin-left: 10px;
                         }
                         .media-body {
-                            margin-left: 10px;
                             h6{
                                 color: $light-font;
                                 margin-bottom: 0;
                                 font-size: calc(11px + (13 - 11) * ((100vw - 320px) / (1920 - 320)));
                             }
+                        }
+                        .icon-center{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
                         }
                     }
                     + li {
@@ -183,6 +194,7 @@
         .wizard-box {
             .wizard-step-container {
                 ul {
+
                     li {
                         .media {
                             .step-icon {
@@ -278,3 +290,4 @@
         }
     }
 }
+

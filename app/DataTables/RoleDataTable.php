@@ -31,14 +31,14 @@ class RoleDataTable extends DataTable
                     'delete' => 'admin.role.destroy',
                     'data'   => $row
                 ]);
-            })->addColumn('checkbox', function ($row) {
-
-                if ($row->name == 'Admin') {
-                    return '<input type="checkbox" id="disable-select" disabled> ';
-                }
-                return '<input type="checkbox" name="row" class="rowClass" value=' . $row->id . ' id="rowId' . $row->id . '">';
             })
-            ->rawColumns(['checkbox', 'action']);
+            ->addColumn('checkbox', function ($row) {
+                    return view('admin.inc.action', [
+                        'select' => 'admin.role.destroy',
+                        'data' => $row
+                    ]);
+                })
+                ->rawColumns(['checkbox', 'action']);
     }
 
     /**
@@ -73,7 +73,7 @@ class RoleDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false),
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.role.destroy')),
             Column::make('id')
                 ->title('No')
                 ->data('DT_RowIndex')
@@ -81,7 +81,7 @@ class RoleDataTable extends DataTable
                 ->orderable(false),
             Column::make('name'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.role.edit') || auth()->user()->can('admin.role.destroy'))),
         ];
     }
 

@@ -1,4 +1,15 @@
 <?php return array (
+  'akki-io/laravel-google-analytics' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'AkkiIo\\LaravelGoogleAnalytics\\LaravelGoogleAnalyticsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'LaravelGoogleAnalytics' => 'AkkiIo\\LaravelGoogleAnalytics\\Facades\\LaravelGoogleAnalytics',
+    ),
+  ),
   'facuz/laravel-themes' => 
   array (
     'providers' => 

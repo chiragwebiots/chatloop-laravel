@@ -78,7 +78,7 @@ class TestimonialPolicy
     {
         if ($user->can('admin.testimonial.destroy') && 
 
-            $user->id == $team->created_by) {
+            $user->id == $testimonial->created_by) {
                 
             return true;
         }

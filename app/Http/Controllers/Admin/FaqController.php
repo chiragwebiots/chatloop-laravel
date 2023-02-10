@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Faq;
+use Illuminate\Http\Request;
 use App\DataTables\FaqDataTable;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -140,6 +141,22 @@ class FaqController extends Controller
             
             throw $e;
 
+        }
+    }
+
+    public function deleteRows(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            
+            $this->faq->deleteRows($request);
+            DB::commit();
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            throw $e;
         }
     }
 }
