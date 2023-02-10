@@ -25,8 +25,8 @@ class CreateUpdatePricingPlanRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'price' => 'required',
-            'duration' => 'required',
+            'price' => 'required|integer',
+            'duration' => 'required|string',
             'content' => 'required'
         ];
     }

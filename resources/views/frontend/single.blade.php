@@ -45,6 +45,7 @@
                         </div>
                     </div>
                     <div class="blog-divider"></div>
+                    @if ($theme->required_login == true) 
                     <div class="col-md-10 offset-md-1 leave-coment">
                         <h3 class="text-center">Leave Your Comment</h3>
                         {!! Form::open([
@@ -52,50 +53,53 @@
                             'method' => 'POST',
                             'class' => 'theme-form p-0 mt-3 form-show',
                             'enctype' => 'multipart/form-data',
-                        ]) !!}
+                            ]) !!}
                         {!! Form::hidden('blog_id', $blog->id, ['class' => 'form-control']) !!}
+                        @auth
                         {!! Form::hidden('user_id', auth()->user()->id, ['class' => 'form-control']) !!}
+                        @endauth
                         {!! Form::hidden('parent_id', null, ['class' => 'form-control', 'id' => 'parent_id']) !!}
-
+                        
                         @if ($theme->required_name_email == true)
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 md-fgrup-margin">
-                                        {!! Form::text('name', auth()->user()->name, [
+                                        {!! Form::text('name',auth()->user()->name ?? null, [
                                             'class' => 'form-control',
                                             'placeholder' => 'your name',
-                                        ]) !!}
+                                            ]) !!}
                                         @error('name')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong> {{ $message }} </strong>
-                                            </span>
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong> {{ $message }} </strong>
+                                        </span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-12">
-                                        {!! Form::email('email', auth()->user()->email, [
+                                        {!! Form::email('email',auth()->user()->email ?? null, [
                                             'class' => 'form-control',
                                             'placeholder' => 'your email',
-                                        ]) !!}
+                                            ]) !!}
+                                        
                                         @error('email')
-                                            <span class="invalid-feedback d-block" role="alert">
-                                                <strong> {{ $message }} </strong>
-                                            </span>
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong> {{ $message }} </strong>
+                                        </span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                        @endif
-                        <div class="form-group">
-                            {!! Form::textarea('message', null, [
-                                'class' => 'form-control',
-                                'placeholder' => 'your message',
-                                'rows' => '6',
-                                'id' => 'message',
-                            ]) !!}
+                            @endif
+                            <div class="form-group">
+                                {!! Form::textarea('message', null, [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'your message',
+                                    'rows' => '6',
+                                    'id' => 'message',
+                                    ]) !!}
                             @error('message')
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong> {{ $message }} </strong>
-                                </span>
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong> {{ $message }} </strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="form-button">
@@ -103,64 +107,62 @@
                         </div>
                         {!! Form::close() !!}
                     </div>
-                    @if ($theme->comment_approved == false)
+                    @endif  
                         <div class="col-12">
                             <ul class="comment-profile-list">
-                                @foreach ($blog->comments as $comment)
-                                    <li>
-                                        <div class="comment-profile-box">
-                                            <div class="reply-box">
-                                                <i class="fa fa-reply"></i>
-                                                <a class="comment-reply" href="javascript:void(0)"
-                                                    id="{{ $comment->id }}"><span>Reply</span></a>
+                                @forelse($comments as $comment)
+                                <li>
+                                    <div class="comment-profile-box">
+                                        <div class="reply-box">
+                                            <i class="fa fa-reply"></i>
+                                            <a class="comment-reply" href="javascript:void(0)"
+                                                id="{{ $comment->id }}"><span>Reply</span></a>
+                                        </div>
+                                        <div class="name-profile">
+                                            <div class="profile-image">
+                                                <img src="{{$comment->createdBy ? url(\App\Helpers\Helpers::media($comment->createdBy->image)->url) : asset('frontend/images/user-dummy-pic.png')}}"
+                                                    class="img-fluid" alt="">    
                                             </div>
-                                            <div class="name-profile">
-                                                <div class="profile-image">
-                                                    <img src="{{ asset('upload/1aSNfyHYIWm9MRULUrEJyHKh27rsLTMdl77LxIBi.jpg') }}"
-                                                        class="img-fluid" alt="">
-                                                </div>
-                                                <div class="profile-name">
-                                                    <h5> {{ $comment->name }} <span>
-                                                            {{ $comment->created_at->diffForHumans() }} </span>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="reply-content">
-                                                {{ $comment->message }}
+                                            <div class="profile-name">
+                                                <h5> {{ $comment->name }} <span>
+                                                        {{ $comment->created_at->diffForHumans() }} </span>
+                                                </h5>
                                             </div>
                                         </div>
-                                        @foreach ($comment->replies as $reply)
-                                            <ul>
-                                                <li>
-                                                    <div class="comment-profile-box">
-                                                        {{-- <div class="reply-box">
-                                                        <i class="fa fa-reply"></i>                                                        
-                                                        <a class="comment-reply" href="javascript:void(0)" id="{{$reply->id}}"><span>Reply</span></a>
-
-                                                    </div> --}}
-                                                        <div class="name-profile">
-                                                            <div class="profile-image">
-                                                                <img src="{{ asset('upload/1aSNfyHYIWm9MRULUrEJyHKh27rsLTMdl77LxIBi.jpg') }}"
-                                                                    class="img-fluid" alt="">
-                                                            </div>
-                                                            <div class="profile-name">
-                                                                <h5> {{ $reply->name }} <span>
-                                                                        {{ $comment->created_at->diffForHumans() }} </span>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                        <div class="reply-content">
-                                                            <p> {{ $reply->message }} </p>
-                                                        </div>
+                                        <div class="reply-content">
+                                            {{ $comment->message }}
+                                        </div>
+                                    </div>
+                                    @forelse ($comment->replies as $reply)
+                                    @if($theme->comment_approved ? $theme->comment_approved && $reply->is_approved : true)
+                                    <ul>
+                                        <li>
+                                            <div class="comment-profile-box">
+                                                <div class="name-profile">
+                                                    <div class="profile-image">
+                                                        <img src="{{$reply->createdBy ? url(\App\Helpers\Helpers::media($reply->createdBy->image)->url) : asset('frontend/images/user-dummy-pic.png')}}"
+                                                            class="img-fluid" alt="">
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        @endforeach
-                                    </li>
-                                @endforeach
+                                                    <div class="profile-name">
+                                                        <h5>{{ $reply->name }}<span>{{ $comment->created_at->diffForHumans() }}</span></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="reply-content">
+                                                    <p> {{ $reply->message }} </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    @endif
+                                    @empty
+                                    
+                                    @endforelse 
+                                </li>
+                                @empty
+                                    
+                                @endforelse
                             </ul>
                         </div>
-                    @endif
                     <div class="col-md-4 col-lg-3 order-md-first list-sidebar">
                         @include('frontend.layouts.partials.sidebar')
                     </div>

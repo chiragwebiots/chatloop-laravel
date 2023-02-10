@@ -4,7 +4,7 @@
 <div class="wizard-step-4 d-block">
     <div class="install-complete">
         <i data-feather="check-circle"></i>
-        <h3>Multikart installed successfully !</h3>
+        <h3>Chatloop installed successfully !</h3>
     </div>
     <div class="row goto-selection">
         <div class="col-sm-6">

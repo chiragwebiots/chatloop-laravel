@@ -5,7 +5,7 @@
             <div class="logo-wrapper">
                 <a href="{{ route('admin.dashboard') }}">
                     <img class="blur-up lazyloaded"
-                        src="{{ isset($theme->site_logo) ? url(\App\Helpers\Helpers::media($theme->site_logo)->url) : asset('admin/images/logo.png') }}"
+                        src="{{ is_null(!$theme->site_logo) ? url(\App\Helpers\Helpers::media($theme->site_logo)->url) : asset('admin/images/logo.png') }}"
                         alt="">
                 </a>
             </div>
@@ -34,38 +34,25 @@
                     </ul>
                 </li>
                 <li class="onhover-dropdown"><i data-feather="bell"></i><span
-                        class="badge badge-pill badge-primary pull-right notification-badge">3</span><span
+                        class="badge badge-pill badge-primary pull-right notification-badge">{{count($contact)}}</span><span
                         class="dot"></span>
                     <ul class="notification-dropdown onhover-show-div p-0">
-                        <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
+                        <li>Contact Emails<span class="badge badge-pill badge-primary pull-right">{{count($contact)}}</span></li>
                         <li>
                             <div class="media">
                                 <div class="media-body">
-                                    <h6 class="mt-0"><span><i class="shopping-color"
-                                                data-feather="shopping-bag"></i></span>Your order ready for Ship..!</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
+                                    @forelse ($contact as $contact)
+                                        <h6 class="mt-0"><span><i class="shopping-color"
+                                                    data-feather="shopping-bag"></i></span> You got email from
+                                            {{ $contact->name }} </h6>
+                                        <p class="mb-0">{{ $contact->message }}</p>
+                                    @empty
+                                        <h3>Contact Emails Not Found</h3>
+                                    @endforelse
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-success"><span><i class="download-color font-success"
-                                                data-feather="download"></i></span>Download Complete</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-danger"><span><i class="alert-color font-danger"
-                                                data-feather="alert-circle"></i></span>250 MB trash files</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="txt-dark"><a href="#">All</a>notification</li>
+                        <li class="txt-dark"><a href="https://mail.google.com/mail/u/0/#inbox">All</a> Emails</li>
                     </ul>
                 </li>
                 <li class="onhover-dropdown">

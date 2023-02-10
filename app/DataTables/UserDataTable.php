@@ -34,11 +34,10 @@ class UserDataTable extends DataTable
                     'data'   => $row
                 ]);
             })->addColumn('checkbox', function ($row) {
-
-                if ($row->getRoleNames()->first() == 'Admin') {
-                    return '<input type="checkbox" id="disable-select" disabled> ';
-                }
-                return '<input type="checkbox" name="row" class="rowClass" value=' . $row->id . ' id="rowId' . $row->id . '">';
+                return view('admin.inc.action', [
+                    'select' => 'admin.user.destroy',
+                    'data' => $row
+                ]);
             })
             ->rawColumns(['checkbox', 'action']);
     }
@@ -63,13 +62,13 @@ class UserDataTable extends DataTable
     {
         return $this->builder()
             ->setTableId('user-table')
-            ->addColumn(['data' => 'checkbox', 'orderable' => false, 'searchable' => false, 'title' => '<input type="checkbox" title="Select All" id="select-all-rows" /> ', 'class' => 'title'])
+            ->addColumn(['data' => 'checkbox','visible'=>auth()->user()->can('admin.user.destroy'), 'orderable' => false, 'searchable' => false, 'title' => '<input type="checkbox" title="Select All" id="select-all-rows" /> ', 'class' => 'title'])
             ->addColumn(['data' => 'name', 'title' => 'Name'])
 
             ->addColumn(['data' => 'email', 'title' => 'Email'])
             ->addColumn(['data' => 'role', 'title' => 'Role'])
             ->addColumn(['data' => 'created_at', 'title' => 'Created At'])
-            ->addColumn(['data' => 'action', 'title' => 'Action'])
+            ->addColumn(['data' => 'action', 'title' => 'Action','visible'=> auth()->user()->can('admin.testimonial.edit') || auth()->user()->can('admin.testimonial.destroy')])
             ->minifiedAjax()
             ->orderBy(1)
             ->parameters(['stateSave' => true]);

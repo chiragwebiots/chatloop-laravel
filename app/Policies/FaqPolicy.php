@@ -30,7 +30,9 @@ class FaqPolicy
      */
     public function view(User $user, Faq $faq)
     {
-        //
+        if ($user->can('admin.faq.index')) {
+            return true;
+        }
     }
 
     /**
@@ -41,7 +43,9 @@ class FaqPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->can('admin.faq.create')) {
+            return true;
+        }
     }
 
     /**
@@ -53,7 +57,10 @@ class FaqPolicy
      */
     public function update(User $user, Faq $faq)
     {
-        //
+        if ($user->can('admin.faq.edit') && 
+            $user->id == $faq->created_by) {
+            return true;
+        }
     }
 
     /**
@@ -65,7 +72,12 @@ class FaqPolicy
      */
     public function delete(User $user, Faq $faq)
     {
-        //
+        if ($user->can('admin.faq.destroy') && 
+
+            $user->id == $faq->created_by) {
+                
+            return true;
+        }
     }
 
     /**

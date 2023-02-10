@@ -46,7 +46,10 @@
                                                 <h5>Requirements</h5>
                                                 <h6>PHP Extensions</h6>
                                             </div>
-                                            <i data-feather="chevrons-right"></i>
+                                            <div class="icon-center">
+                                                <i data-feather="chevrons-right"></i>
+                                            </div>
+                                            
                                         </div>
                                     </li>
                                     <li
@@ -60,7 +63,10 @@
                                                 <h5>Directories</h5>
                                                 <h6>Permissions</h6>
                                             </div>
-                                            <i data-feather="chevrons-right"></i>
+                                            <div class="icon-center">
+                                                <i data-feather="chevrons-right"></i>
+                                            </div>
+                                            
                                         </div>
                                     </li>
                                     <li
@@ -74,7 +80,9 @@
                                                 <h5>License</h5>
                                                 <h6>Purchase Code</h6>
                                             </div>
-                                            <i data-feather="chevrons-right"></i>
+                                            <div class="icon-center">
+                                                <i data-feather="chevrons-right"></i>
+                                            </div>
                                         </div>
                                     </li>
                                     <li
@@ -88,7 +96,9 @@
                                                 <h5>Configuration</h5>
                                                 <h6>Connection Details</h6>
                                             </div>
-                                            <i data-feather="chevrons-right"></i>
+                                            <div class="icon-center">
+                                                <i data-feather="chevrons-right"></i>
+                                            </div>
                                         </div>
                                     </li>
                                     <li

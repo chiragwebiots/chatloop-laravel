@@ -29,8 +29,10 @@ class PricingPlanDataTable extends DataTable
                     'data'   => $row
                 ]);
             })->addColumn('checkbox', function ($row) {
-
-                return '<input type="checkbox" name="row" class="rowClass" value=' . $row->id . ' id="rowId' . $row->id . '">';
+                return view('admin.inc.action', [
+                    'select' => 'admin.pricing-plan.destroy',
+                    'data' => $row
+                ]);
             })
             ->rawColumns(['checkbox', 'action']);
     }
@@ -68,7 +70,7 @@ class PricingPlanDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false),
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.pricing-plan.destroy')),
             Column::make('id')
                 ->title('No')
                 ->data('DT_RowIndex')
@@ -76,7 +78,7 @@ class PricingPlanDataTable extends DataTable
                 ->orderable(false),
             Column::make('title'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.pricing-plan.edit') || auth()->user()->can('admin.pricing-plan.destroy'))),
         ];
     }
 

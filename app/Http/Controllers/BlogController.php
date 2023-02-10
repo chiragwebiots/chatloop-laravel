@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Blog;
 use App\Models\Page;
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Setting;
+use App\Helpers\Helpers;
 use App\Models\Category;
+use App\Models\ThemeOption;
+use Faker\Extension\Helper;
 use App\Http\Requests\CreateUpdateCommentRequest;
 
 class BlogController extends Controller
 {
     private $Setting;
     private $comment;
+    private $theme;
 
-    public function __construct(Comment $comment)
+    public function __construct(Comment $comment,ThemeOption $theme)
     {
         $this->Setting = Setting::first();
+        $this->theme = ThemeOption::first();
         $this->comment = $comment;
     }
 
@@ -94,8 +100,9 @@ class BlogController extends Controller
     public function details($slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
+        $comments =   $this->theme->comment_approved ? $blog->comments()->where('is_approved', true)->get() : $blog->comments()->get();
         
-        return view('frontend.single', ['blog' => $blog]);
+        return view('frontend.single', ['blog' => $blog ,'comments' => $comments]);
     }
 
     /**
@@ -107,6 +114,6 @@ class BlogController extends Controller
     public function comment(CreateUpdateCommentRequest $request)
     {
         $this->comment->Create($request->except(['_method', '_token']));
-        return back()->with('success', 'Comment Sent Successfully.');
+        return back()->with('message', 'Comment Sent Successfully.');
     }
 }

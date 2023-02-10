@@ -62,6 +62,7 @@ return [
     'bounce_rate'=>'Bounce Rate',
     'new_visitors'=>'New Visitors',
     'visitors'=>'Visitors',
+    'send_message'=>'Send Message',
     'social_links' => [
         'create' => 'Create Social Link',
         'add' => 'Add Social Link`',
@@ -69,6 +70,7 @@ return [
         'name' => 'Name',
         'icon' => 'Icon',
         'url' => 'Url',
+        'theme_option'=>'Theme Option',
     ], 
     
     'roles' => [

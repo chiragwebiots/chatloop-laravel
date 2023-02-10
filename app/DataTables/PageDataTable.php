@@ -38,8 +38,10 @@ class PageDataTable extends DataTable
                     'data'   => $row
                 ]);
             })->addColumn('checkbox', function ($row) {
-
-                return '<input type="checkbox" name="row" class="rowClass" value=' . $row->id . ' id="rowId' . $row->id . '">';
+                return view('admin.inc.action', [
+                    'select' => 'admin.page.destroy',
+                    'data' => $row
+                ]);
             })
             ->rawColumns(['checkbox', 'action']);
     }
@@ -77,7 +79,7 @@ class PageDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false),
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.page.destroy')),
             Column::make('id')
                 ->title('No')
                 ->data('DT_RowIndex')
@@ -87,7 +89,7 @@ class PageDataTable extends DataTable
             Column::make('author'),
             Column::make('status'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.page.edit') || auth()->user()->can('admin.page.destroy'))),
         ];
     }
 

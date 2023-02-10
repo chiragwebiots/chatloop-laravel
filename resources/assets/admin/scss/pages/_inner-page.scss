@@ -1463,5 +1463,12 @@
       height: 37px;
       padding: 4px;
       overflow: hidden;      
+    } 
+  }
+
+  .form-check{padding: 0;
+    .form-check-input{
+        margin: 0;
+        float: unset;
     }
   }

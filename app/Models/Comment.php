@@ -9,6 +9,13 @@ class Comment extends Model
 {
     use HasFactory;
 
+
+    public function getRecentComments(){
+
+        return $this->latest('comments.created_at')->take(5)->get();
+        
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,11 +28,12 @@ class Comment extends Model
         'user_id',
         'blog_id',
         'parent_id',
+        'is_approved',
     ];
 
     public function createdBy(){
         
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
     public function blogs(){

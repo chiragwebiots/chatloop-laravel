@@ -37,5 +37,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\FaqInterface::class, \App\Repositories\FaqRepository::class);
         $this->app->bind(\App\Repositories\Contracts\SectionInterface::class, \App\Repositories\SectionRepository::class);
         $this->app->bind(\App\Repositories\Contracts\SocialLinkInterface::class, \App\Repositories\SocialLinkRepository::class);
+        $this->app->bind(\App\Repositories\Contracts\Commentinterface::class, \App\Repositories\CommentRepository::class);
     }
 }

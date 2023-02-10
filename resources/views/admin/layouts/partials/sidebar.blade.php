@@ -95,8 +95,7 @@
                         <i data-feather="edit"></i><span>{{ __('Posts') }}</span><i
                             class="fa fa-angle-right pull-right"></i>
                     </a>
-                    <ul
-                        class="sidebar-submenu {{ Request::is('admin/blog*') || Request::is('admin/category*') || Request::is('admin/tag*') ? 'menu-open' : '' }}">
+                    <ul class="sidebar-submenu {{ Request::is('admin/blog*') || Request::is('admin/category*')||Request::is('admin/comment*') || Request::is('admin/tag*') ? 'menu-open' : '' }}">
                         <li>
                             <a href="{{ route('admin.blog.index') }}"
                                 class="{{ Request::is('admin/blog*') && !Request::is('admin/blog/create') ? 'active' : '' }}">
@@ -116,6 +115,14 @@
                                 <a href="{{ route('admin.category.index') }}"
                                     class="{{ Request::is('admin/category*') ? 'active' : '' }}">
                                     <i class="fa fa-circle"></i>{{ __('Categories') }}
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin.comment.index')
+                            <li>
+                                <a href="{{ route('admin.comment.index') }}"
+                                    class="{{ Request::is('admin/comment*') ? 'active' : '' }}">
+                                    <i class="fa fa-circle"></i>{{ __('Comments') }}
                                 </a>
                             </li>
                         @endcan

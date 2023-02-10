@@ -19,33 +19,39 @@
                 ]) !!}
                 <div class="card-body">
                     <div class="form-group row form-check form-switch">
-                        {!! Form::label('required_name_email', 'Comment author must fill out name and email', [
-                            'class' => 'col-xl-3 col-md-4 h6 form-check-label',
-                        ]) !!}
-                        <div class="col-xl-8 col-md-7">
-                            {!! Form::checkbox('required_name_email', true, $theme->required_name_email ? true : false, [
-                                'class' => 'form-check-input toggle-class',
+                        <div class="row">
+                            {!! Form::label('required_name_email', 'Comment author must fill out name and email', [
+                                'class' => 'col-xl-3 col-md-4 h6 form-check-label',
                             ]) !!}
+                            <div class="col-xl-8 col-md-7">
+                                {!! Form::checkbox('required_name_email', true, $theme->required_name_email ? true : false, [
+                                    'class' => 'form-check-input toggle-class',
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row form-check form-switch">
-                        {!! Form::label('required_login', 'Users must be registered and logged in to comment', [
-                            'class' => 'col-xl-3 col-md-4 h6 form-check-label',
-                        ]) !!}
-                        <div class="col-xl-8 col-md-7">
-                            {!! Form::checkbox('required_login', true, $theme->required_login ? true : false, [
-                                'class' => 'form-check-input toggle-class',
+                        <div class="row">
+                            {!! Form::label('required_login', 'Users must be registered and logged in to comment', [
+                                'class' => 'col-xl-3 col-md-4 h6 form-check-label',
                             ]) !!}
+                            <div class="col-xl-8 col-md-7">
+                                {!! Form::checkbox('required_login', true, $theme->required_login ? true : false, [
+                                    'class' => 'form-check-input toggle-class',
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row form-check form-switch">
-                        {!! Form::label('comment_approved', 'Comment must be manually approved', [
-                            'class' => 'col-xl-3 col-md-4 h6 form-check-label',
-                        ]) !!}
-                        <div class="col-xl-8 col-md-7">
-                            {!! Form::checkbox('comment_approved', true, $theme->comment_approved ? true : false, [
-                                'class' => 'form-check-input toggle-class',
+                        <div class="row">
+                            {!! Form::label('comment_approved', 'Comment must be manually approved', [
+                                'class' => 'col-xl-3 col-md-4 h6 form-check-label',
                             ]) !!}
+                            <div class="col-xl-8 col-md-7">
+                                {!! Form::checkbox('comment_approved', true, $theme->comment_approved ? true : false, [
+                                    'class' => 'form-check-input toggle-class',
+                                ]) !!}
+                            </div>
                         </div>
                     </div>
                 </div>

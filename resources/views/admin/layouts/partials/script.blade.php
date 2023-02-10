@@ -32,53 +32,25 @@
             });
         }
 
-        // pie chart script
-        var options = {
-            series: [{{ $desktopUsers }}, {{ $mobileUsers }}, {{ $tabletUsers }}],
-            labels: ['Desktop', 'Mobile', 'Tablet'],
-            chart: {
-                type: 'donut',
-                height: 240,
-            },
-            plotOptions: {
-                pie: {
-                    expandOnClick: false,
-                    size: 250,
-                    donut: {
-                        labels: {
-                            show: true,
-                        }
-                    },
+        // Toggle swich 
+        $(document).on('change', '#is_approved', function() {
+            let status = $(this).prop('checked') == true ? 1 : 0;
+            var id = this.value;
+            var url = '{{ route('admin.comment.update', ":id " ) }}',
+            url =  url.replace(":id", id);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    is_approved : status,
+                    _method: 'PUT'
+                },
+                success: function(data) {
+                    //   
                 }
-            },
-            responsive: [{
-                breakpoint: 1643,
-                options: {
-                    chart: {
-                        height: 300,
-                    }
-                },
-                breakpoint: 1598,
-                options: {
-                    chart: {
-                        height: 900,
-                    }
-                },
-                breakpoint: 1556,
-                options: {
-                    chart: {
-                        height: 900,
-                    }
-                },
-            }]
-        };
-
-
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-
-
+            });
+            
+        });
         // Add Shortcode Plugin
         tinymce.PluginManager.add('shortcodes', function(editor, url) {
             var toggleState = false;
@@ -479,8 +451,7 @@
             var html = '';
             Media.selectedFiles.forEach((data) => {
                 html += '<div class="col-2"><div class="card mb-0 ratio3_2">';
-                html += '<div class="img-part b_size_content"><img src="{{ url('/') }}/' + data.url +
-                    '" class="card-img-top bg-img" alt="..."></div>';
+                html += '<div class="img-part b_size_content"><img src="{{ url('/') }}/' + data.url +'" class="card-img-top bg-img" alt="..."></div>';
                 html += '<div class="dropdown custom-dropdown">';
                 html += '<a href="javascript:void(0)">';
                 html += '<i class="remove-icon ti-trash remove-file" select="' + Media.select_id +
@@ -531,9 +502,7 @@
                             html +=
                                 '<ul class="dropdown-menu option-dropdown" aria-labelledby="dropdownMenuButton1">';
                             html += '<li>';
-                            html += '<a href="{{ url('/') }}/' +
-                                data.url +
-                                '" download class="list-box">';
+                            html += '<a href="{{ url('/') }}/' + data.url +'" download class="list-box">';
                             html += '<i class="fa fa-download" aria-hidden="true"></i>';
                             html += '<span>Download</span>';
                             html += '</a>';
@@ -552,9 +521,7 @@
                             html += '<div id ="select-class" class="' +
                                 select_class + '" data-file-id="' + data.id + '">';
                             html +=
-                                '<div class="img-part bg-size-contain"><img src="{{ url('/') }}/' +
-                                data.url +
-                                '" class="card-img-top bg-img" alt="...">';
+                                '<div class="img-part bg-size-contain"><img src="{{ url('/') }}/' + data.url +'" class="card-img-top bg-img" alt="...">';
                             html += '<div class="card-body">';
                             html += '<h5 class="card-title mb-0">' + data
                                 .original_file_name + '</h5><h6>' + data.size +
@@ -782,6 +749,7 @@
                 }
             });
         })
+
         // get color code
         $(document).on('change', '#color-box', function(e) {
             e.preventDefault();

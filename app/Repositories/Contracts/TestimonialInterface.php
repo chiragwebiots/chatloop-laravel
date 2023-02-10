@@ -14,4 +14,6 @@ interface TestimonialInterface
 
     public function destroy(int $id); 
 
+    public function deleteRows($request);
+
 }

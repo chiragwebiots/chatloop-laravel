@@ -51,5 +51,12 @@ class FaqRepository implements FaqInterface
 	{
 		return $this->_faq->destroy($id);
 	}
+
+	public function deleteRows($request)
+	{
+		foreach ($request->id as $id) {
+			$this->_faq->findOrFail($id)->destroy($id);
+		}
+	}
     
 }

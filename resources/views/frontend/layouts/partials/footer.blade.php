@@ -6,7 +6,7 @@
                 <div class="social-footer">
                     <ul>
                         @forelse ($social_link as $social_links)
-                            <li><a href="{{ $social_links->url }}"><i class="fa {{ $social_links->icon }}"
+                            <li><a href="{{ url($social_links->url) }}"><i class="fa {{ $social_links->icon }}"
                                         aria-hidden="true"></i></a></li>
                         @empty
                             <li><a href="#"><i class="fa fa-info" aria-hidden="true"></i></a></li>

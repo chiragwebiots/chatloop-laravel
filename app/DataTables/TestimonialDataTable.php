@@ -28,7 +28,13 @@ class TestimonialDataTable extends DataTable
                     'delete' => 'admin.testimonial.destroy',
                     'data'   => $row
                 ]);
-            });
+            })->addColumn('checkbox', function ($row) {
+                return view('admin.inc.action', [
+                    'select' => 'admin.testimonial.destroy',
+                    'data' => $row
+                ]);
+            })
+            ->rawColumns(['checkbox', 'action']);
     }
 
     /**
@@ -65,6 +71,7 @@ class TestimonialDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.testimonial.destroy')),
             Column::make('id')
                 ->title('No')
                 ->data('DT_RowIndex')
@@ -72,7 +79,7 @@ class TestimonialDataTable extends DataTable
                 ->orderable(false),
             Column::make('name'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.testimonial.edit') || auth()->user()->can('admin.testimonial.destroy'))),
         ];
     }
 

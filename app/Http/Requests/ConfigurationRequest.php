@@ -27,14 +27,14 @@ class ConfigurationRequest extends FormRequest
     {
         return [
             'database.DB_HOST' => ['required', 'max:255', 'regex:/^\S*$/u'],
-            'database.DB_PORT' => ['required', 'regex:/^\S*$/u'],
-            'database.DB_USERNAME' => ['required', 'regex:/^\S*$/u'],
-            'database.DB_PASSWORD' => ['nullable'],
-            'database.DB_DATABASE' => ['required', 'regex:/^\S*$/u'],
-            'admin.first_name' => ['required'],
-            'admin.last_name' => ['required'],
-            'admin.email' => ['required', 'email'],
-            'admin.password' => ['required', 'confirmed']
+            'database.DB_PORT' => ['required', 'regex:/^\S*$/u','max:10'],
+            'database.DB_USERNAME' => ['required', 'regex:/^\S*$/u','max:255'],
+            'database.DB_PASSWORD' => ['nullable','max:10'],
+            'database.DB_DATABASE' => ['required', 'regex:/^\S*$/u','max:255'],
+            'admin.first_name' => ['required','max:255'],
+            'admin.last_name' => ['required','max:255'],
+            'admin.email' => ['required', 'email','max:255'],
+            'admin.password' => ['required', 'confirmed','min:8']
         ];
     }
 

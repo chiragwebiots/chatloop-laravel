@@ -33,21 +33,11 @@
     <!-- Select2 css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/vendors/select2.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/vendors/dropzone.css') }}">
-    <!-- Nprogress css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/vendors/nprogress.css') }}">
+
     @stack('style')
-
-    <!-- Toster notification -->
-    <link href="{{ asset('admin/css/vendors/toster.css') }}" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/toster2.css') }}">
 
     <!-- DataTable Select cdn CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
-     alpha/css/bootstrap.css"
-        rel="stylesheet">
 
 
     <link rel="stylesheet" type="text/css"
@@ -68,7 +58,7 @@
 
     <div class="page-wrapper">
 
-        @includeIf('admin.layouts.partials.header')
+        @includeIf('admin.layouts.partials.header',['contact' => \App\Models\Contact::all()])
 
         <div class="page-body-wrapper">
 

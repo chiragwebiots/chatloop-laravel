@@ -48,15 +48,18 @@ class BlogDataTable extends DataTable
             })
             ->addColumn('action', function ($row) {
                 return view('admin.inc.action', [
-                    'edit'   => 'admin.blog.edit',
+                    'edit' => 'admin.blog.edit',
                     'delete' => 'admin.blog.destroy',
-                    'data'   => $row
+                    'data' => $row
                 ]);
-            })->addColumn('checkbox', function ($row) {
-
-                return '<input type="checkbox" name="row" class="rowClass" value=' . $row->id . ' id="rowId' . $row->id . '">';
             })
-            ->rawColumns(['checkbox', 'action']);
+            ->addColumn('checkbox', function ($row) {
+                    return view('admin.inc.action', [
+                        'select' => 'admin.blog.destroy',
+                        'data' => $row
+                    ]);
+                })
+                ->rawColumns(['checkbox', 'action']);
     }
 
     /**
@@ -93,19 +96,19 @@ class BlogDataTable extends DataTable
     {
 
         return [
-            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false),
+            Column::make('checkbox')->title('<input type="checkbox" title="Select All" id="select-all-rows" /> ')->class('title')->searchable(false)->orderable(false)->visible(auth()->user()->can('admin.blog.destroy')),
             Column::make('id')
-                ->title('No')
-                ->data('DT_RowIndex')
-                ->searchable(false)
-                ->orderable(false),
+            ->title('No')
+            ->data('DT_RowIndex')
+            ->searchable(false)
+            ->orderable(false),
             Column::make('title'),
             Column::make('author'),
             Column::make('categories'),
             Column::make('tags'),
             Column::make('status'),
             Column::make('created_at'),
-            Column::computed('action'),
+            Column::computed('action')->visible((auth()->user()->can('admin.blog.edit') || auth()->user()->can('admin.blog.destroy'))),
         ];
     }
 

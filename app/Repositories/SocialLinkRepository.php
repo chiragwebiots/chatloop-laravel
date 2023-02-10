@@ -44,5 +44,12 @@ class SocialLinkRepository implements SocialLinkInterface
 	{
 		return $this->_social_link->destroy($id);
 	}
+
+	public function deleteRows($request)
+	{
+		foreach ($request->id as $id) {
+			$this->_social_link->findOrFail($id)->destroy($id);
+		}
+	}
     
 }

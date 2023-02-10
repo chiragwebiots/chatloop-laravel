@@ -15,6 +15,7 @@ class SettingController extends Controller
 
     public function __construct(Setting $setting)
     {
+        $this->authorizeResource(Setting::class);
         $this->timezone = [            
             'Pacific/Midway' => '(GMT-11:00) Midway Island, Samoa',
             'America/Adak' => '(GMT-10:00) Hawaii-Aleutian',
@@ -142,7 +143,14 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $this->setting->update($request->except(['_method', '_token'])); 
-        
+
+        if($request->google_analytics){
+            DotenvEditor::setKeys([
+                'ANALYTICS_VIEW_ID' => $request['google_analytics'],
+            ]);
+            DotenvEditor::save();
+        }
+
         if ($request->mail_transport) {
             
             DotenvEditor::setKeys([
